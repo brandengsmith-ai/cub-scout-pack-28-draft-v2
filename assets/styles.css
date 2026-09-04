@@ -231,12 +231,19 @@ a:hover { color: var(--blue-deep); }
   .nav-label { display: none; }
   .site-nav { display: block !important; padding-bottom: 0; }
   .header-bar { padding-block: 1rem; }
-  .site-nav ul { flex-direction: row; gap: .25rem; }
-  .site-nav a { min-height: 44px; padding: 0 .8rem; font-size: 15px; }
+  .site-nav ul { flex-direction: row; flex-wrap: wrap; gap: .25rem; }
+  /* Seven items only just fit at this breakpoint, so the row runs tighter
+     here and relaxes at 58rem. flex-wrap is the backstop: if a device
+     substitutes a wider font the nav drops to a second row instead of
+     spilling out of the header. */
+  .site-nav a { min-height: 44px; padding: 0 .5rem; font-size: 15px; }
   .site-nav a[aria-current="page"] {
     box-shadow: inset 0 -3px 0 var(--gold);
     border-radius: var(--radius-input) var(--radius-input) 0 0;
   }
+}
+@media (min-width: 58rem) {
+  .site-nav a { padding: 0 .8rem; }
 }
 
 /* --- hero and page head --------------------------------------------------- */
@@ -428,6 +435,8 @@ a:hover { color: var(--blue-deep); }
   color: var(--ink);
 }
 .announce p { margin: 0; }
+.announce ul { margin: .625rem 0 0; padding-left: 1.15rem; color: var(--ink-muted); }
+.announce li { margin: 0; }
 
 /* --- event cards ---------------------------------------------------------- */
 
@@ -597,3 +606,4 @@ a:hover { color: var(--blue-deep); }
 .stub-panel ul { margin: 0; padding-left: 1.15rem; color: var(--ink-muted); }
 .stub-panel li { margin-bottom: .4rem; }
 .stub-panel li:last-child { margin-bottom: 0; }
+.stub-panel li > ul { margin: .4rem 0 0; }
